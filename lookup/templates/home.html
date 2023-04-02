@@ -2,6 +2,49 @@
 
 
 {% block content %}
-<h1>Hello World!!</h1>
+
+{% if zipcode %}
+	{{ zipcode }}
+{% endif %}
+
+{% if api %}
+	{{ api }}
+{% endif %}
+
+
+{% if api %}
+	{% if api == "Error..." %}
+		<p>There was an error, please try again...<p/>
+	{% else %}
+	<div class="jumbotron {{ category_color }}">
+	  <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+	  <p class="lead">Current: {{ api.0.ReportingArea }}, Air quality: {{ api.0.AQI }}</p>
+	  <hr class="my-4">
+	  <!-- {% if api.0.Category.Name == "Good" %}
+	  	<p>(0 - 50)</p>
+	  {% elif api.0.Category.Name == "Moderate" %}
+	  	<p>(51 - 100)</p>
+	  {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
+	  	<p>(101 - 150)</p>
+	  {% elif api.0.Category.Name == "Unhealthy" %}
+	  	<p>(151 - 200)</p>
+	  {% elif api.0.Category.Name == "Very Unhealthy" %}
+	  	<p>(201 - 300)</p>
+	  {% elif api.0.Category.Name == "Hazardous" %}
+	  	<p>(301 - 500)</p>
+
+	  {% endif %} -->
+
+	  <p>{{ category_description }}</p>
+	  
+	</div>
+	<br/>
+		<!-- Air quality: {{ api.0.AQI }}<br/> -->
+		<!-- Area: {{ api.0.ReportingArea }}<br/> -->
+		<!-- Category: {{ api.0.Category.Name }}<br/><br/> -->
+	{% endif %}
+{% endif %}
+
+
 
 {% endblock %}
